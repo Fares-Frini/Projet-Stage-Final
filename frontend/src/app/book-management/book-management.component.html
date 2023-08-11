@@ -1,0 +1,77 @@
+<div id="black" style="display: none;"></div>
+<div class="container">
+  <section class="main">
+    <div class="flex justify-between">
+      <h1>Books</h1>
+      <div class="wrap">
+      <button id="openclose" class="addbtn"  (click)="openAdd()">Ajouter</button>
+    </div>
+    </div>
+    <mat-form-field class="w-1/2">
+      <mat-label>Search a User</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Exemple@gmail.com" #input>
+    </mat-form-field>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 m-0">
+    
+      <ng-container matColumnDef="action"  >
+        <th mat-header-cell *matHeaderCellDef > Action</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button  class="m-1" style="background-color: rgb(240, 240, 240);" color="primary" (click)="openEdit()" ><mat-icon>edit</mat-icon></button>
+          <button mat-icon-button (click)="onDelBook(element.id)" class="m-1" style="background-color: rgb(240, 240, 240);" color="warn"><mat-icon>delete</mat-icon></button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="change cover image"  >
+        <th mat-header-cell *matHeaderCellDef > Change cover image</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-raised-button  class="m-1" (click)="openEditImg(element.id)"  color="primary" ><mat-icon>image</mat-icon>Change Image</button>
+         </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Download"  >
+        <th mat-header-cell *matHeaderCellDef > Download File</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-raised-button  class="m-1" (click)="onDownloadFile(element.id)"  color="primary" ><mat-icon>download</mat-icon>Download File</button>
+         </td>
+      </ng-container>
+  
+       <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+    
+       <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="author">
+        <th mat-header-cell *matHeaderCellDef>Author</th>
+        <td mat-cell *matCellDef="let element"> {{element.author}} </td>
+      </ng-container>
+    
+       <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef>Category</th>
+        <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="sale">
+        <th mat-header-cell *matHeaderCellDef>Sales</th>
+        <td mat-cell *matCellDef="let element"> {{element.sale}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef>Price</th>
+        <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="promotion">
+        <th mat-header-cell *matHeaderCellDef>Promotion</th>
+        <td mat-cell *matCellDef="let element"> {{element.promotion}} %</td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+     
+  </section>

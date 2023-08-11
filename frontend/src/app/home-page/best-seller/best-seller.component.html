@@ -1,0 +1,20 @@
+<mat-card>
+    <mat-card-header >
+        <div class="flex justify-between w-full ">
+            <mat-card-title>Meilleurs Ventes</mat-card-title>
+            <mat-card-title style="color: blue; text-decoration: underline; cursor: pointer;" ><span routerLink="/bibliotheque/catalogue" >See All→</span></mat-card-title>
+        </div>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="flex">
+            <mat-grid-list gutterSize="16" [cols]="cols" [rowHeight]="rowHeight" *ngFor="let product of products">
+                <mat-grid-tile>
+                    <app-product-box (addToCart)="onAddToCart($event)" class="w-full" [product]="product"
+                        [fullWidthMode]="cols === 4"></app-product-box>
+                </mat-grid-tile>
+                
+
+            </mat-grid-list>
+        </div>
+    </mat-card-content>
+</mat-card>

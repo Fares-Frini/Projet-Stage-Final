@@ -1,0 +1,61 @@
+<div mat-dialog-title>
+  <h1>Add a User </h1>
+</div>
+<form [formGroup]="addUserForm">
+  <div mat-dialog-content class="content">
+      <div class="row">
+          <mat-form-field appearance="outline">
+              <mat-label>First name</mat-label>
+              <input matInput type="text" required formControlName="fname">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+              <mat-label>Last Name</mat-label>
+              <input matInput required  formControlName="lname">
+          </mat-form-field>
+      </div>
+
+      <div class="row">
+          <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput type="email" required placeholder="Ex. test@gmail.com" formControlName="email">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+              <mat-label>Date of birth</mat-label>
+              <input matInput required [matDatepicker]="picker" formControlName="dob">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+      </div>
+
+      <div class="row">
+          <mat-radio-group aria-label="Select an option" required formControlName="gender" color="primary" >
+              <mat-label><b>Gender</b></mat-label>
+              <mat-radio-button value="male">Male</mat-radio-button>
+              <mat-radio-button value="female">Female</mat-radio-button>
+          </mat-radio-group>
+          <mat-form-field appearance="outline">
+            <mat-label>Role</mat-label>
+            <mat-select formControlName="role"  >
+                <mat-option required  value="admin"   >Admin
+                </mat-option>
+                <mat-option required value="user"   >User
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+          
+          <mat-form-field appearance="outline">
+              <mat-label>Password</mat-label>
+              <input matInput required type="password" formControlName="password">
+          </mat-form-field>
+      </div>
+      
+  </div>
+  <div mat-dialog-actions class="action">
+      <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+      <button mat-raised-button color="primary" type="submit" (click)="onAddUser()">Submit</button>
+  </div>
+</form>

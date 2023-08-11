@@ -1,0 +1,62 @@
+<div mat-dialog-title>
+    <h1>Edit a Book </h1>
+</div>
+<form >
+    <div mat-dialog-content class="content">
+   
+         
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput type="text" required formControlName="firstName">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Name of the author</mat-label>
+                <input matInput required formControlName="lastName">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>category</mat-label>
+                <mat-select formControlName="category">
+                    <mat-option required *ngFor="let val of ['Biography',
+                    'Fiction',
+                    'History',
+                   '  Mystery',
+                    'Non-fiction',
+                    'Philosophy',
+                    'Science fiction'] " [value]="val">{{val}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Promotion</mat-label>
+                <mat-select formControlName="Promotion">
+                    <mat-option required *ngFor="let val of ['10%',
+                    '20%',
+                    '30%',
+                   '40%',
+                    '50%',
+                    '60%',
+                    '70%','80%','90%'] " [value]="val">{{val}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            
+            <label id="file-label" for="input-img">Edit File</label>
+            <input  type="file" required accept="application/pdf" id="input-img"  >
+            <mat-form-field appearance="outline" class="mt-4">
+                <mat-label>Price</mat-label>
+                <input type="number" matInput required formControlName="price">
+            </mat-form-field>
+        </div>
+
+    </div>
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button color="primary" type="submit">Submit</button>
+    </div>
+</form>   

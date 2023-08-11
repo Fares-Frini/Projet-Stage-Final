@@ -1,0 +1,59 @@
+<div mat-dialog-title  >
+    <h1 >Edit a User {{data.id}}</h1>
+  </div>
+  <form [formGroup]="UsereditForm">
+    <div mat-dialog-content class="content">
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>First name</mat-label>
+                <input matInput type="text" required formControlName="fname" [(ngModel)]="data.firstName">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Last Name</mat-label>
+                <input matInput required  formControlName="lname" [(ngModel)]="data.lastname">
+            </mat-form-field>
+        </div>
+  
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" required placeholder="Ex. test@gmail.com" formControlName="email" [(ngModel)]="data.email">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Date of birth</mat-label>
+                <input matInput required [matDatepicker]="picker" formControlName="dob" [(ngModel)]="data.dob">
+                <mat-hint>DD/MM/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+  
+        <div class="row">
+            <mat-radio-group aria-label="Select an option" required formControlName="gender" color="primary" [(ngModel)]="data.gender" >
+                <mat-label><b>Gender</b></mat-label>
+                <mat-radio-button value="male"  >Male</mat-radio-button>
+                <mat-radio-button value="female"  >Female</mat-radio-button>
+            </mat-radio-group>
+            <mat-form-field appearance="outline">
+              <mat-label>Role</mat-label>
+              <mat-select formControlName="role" [(ngModel)]="data.role" >
+                  <mat-option required  value="admin">Admin</mat-option>
+                  <mat-option required value="user" >User</mat-option>
+              </mat-select>
+          </mat-form-field>
+        </div>
+  
+        <div class="row">
+            
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput required type="password" formControlName="password" [(ngModel)]="data.password">
+            </mat-form-field>
+        </div>
+        
+    </div>
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button color="primary" type="submit" (click)="onEditUser()">Submit</button>
+    </div>
+  </form>

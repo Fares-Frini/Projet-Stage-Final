@@ -1,0 +1,58 @@
+<div mat-dialog-title>
+    <h1>Add a Book </h1>
+</div>
+<form [formGroup]="addBookForm">
+    <div mat-dialog-content class="content">
+        <div class="flex justify-center">
+        <img [src]="url" alt="image"  id="BookPic">
+         <a href="">{{name}}</a>
+    </div>
+        <div class="row">
+            <label id="img-label" for="input-img">update images</label>
+            <input  type="file"  accept="image/jpeg ,image/png ,image/jpg" id="input-img" (change)="imageChange($event)"  >
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput type="text" required formControlName="name">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Name of the author</mat-label>
+                <input matInput required formControlName="author">
+            </mat-form-field>
+        </div>
+
+        
+
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>category</mat-label>
+                <mat-select formControlName="category">
+                    <mat-option required *ngFor="let val of ['Biography',
+                    'Fiction',
+                    'History',
+                   '  Mystery',
+                    'Non-fiction',
+                    'Philosophy',
+                    'Science fiction'] " [value]="val">{{val}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            
+            <label id="file-label" for="input-file">Uploade File</label>
+            <input  type="file" required accept="application/pdf" id="input-file"  (change)="getFile($event)" >
+            <mat-form-field appearance="outline" class="mt-4">
+                <mat-label>Price</mat-label>
+                <input type="number" matInput required formControlName="price">
+            </mat-form-field>
+        </div>
+
+    </div>
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button color="primary" type="submit" (click)="onAddBook()">Submit</button>
+    </div>
+</form>

@@ -1,0 +1,15 @@
+<div mat-dialog-title>
+    <h1>Update Image </h1>
+</div>
+<div mat-dialog-content class="content">
+    <div class="flex justify-center">
+    <img [src]="url" alt="image"  id="BookPic">
+</div>
+    <div class="row">
+        <label id="img-label" for="input-img">update images</label>
+        <input  type="file"  accept="image/jpeg ,image/png ,image/jpg" id="input-img" (change)="imageChange($event)">
+    </div>
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button color="primary" type="submit" (click)="onSubmitImgChange()">Submit</button>
+    </div>

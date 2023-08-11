@@ -1,0 +1,105 @@
+<div class="flex justify-center mt-9 ">
+  <mat-tab-group class="shadow-xl p-5 rounded " dynamicHeight>
+    <form   [formGroup]="loginForm">
+    <mat-tab label="Log In">
+      <mat-card>
+        <mat-card-header>
+          <h1>Log In To Your Account</h1>
+        </mat-card-header>
+        <mat-card-content>
+          <h2>E-Mail</h2>
+
+          <mat-form-field class="example-full-width" class="w-full">
+            <mat-label>Email</mat-label>
+            <input formControlName="email" type="email" matInput placeholder="Ex. pat@example.com" >
+            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+              Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="emailFormControl.hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+        </mat-card-content>
+        <mat-card-content>
+          <h2>Password</h2>
+          <mat-form-field>
+            <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'"  formControlName="password"
+              required>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-form-field> 
+        </mat-card-content>
+         
+      </mat-card>
+      <mat-card-footer class="flex justify-center "><button (click)="onLogin()" class="w-full" type="submit" mat-raised-button color="primary">Log
+          In</button></mat-card-footer>
+    </mat-tab>
+  </form>
+  <form   [formGroup]="RegisterForm">
+    <mat-tab label="Create Account ">
+      <mat-card-header>
+        <h2>Create Your Account</h2>
+      </mat-card-header>
+
+      <mat-card-content>
+
+        <div class="flex justify-between  ">
+
+          <mat-form-field class="example-full-width" class="mr-16">
+            <mat-label>First Name</mat-label>
+            <input type="text" matInput required  formControlName="fname">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width"  >
+            <mat-label>Last Name</mat-label>
+            <input type="text" matInput required formControlName="lname">
+          </mat-form-field>
+
+        </div>
+
+        <mat-form-field class="example-full-width" class="w-full">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput placeholder="Ex. pat@example.com" formControlName="email">
+          <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="emailFormControl.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <div class="flex justify-between  ">
+
+          <mat-form-field>
+            <mat-label>Birth date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="dob">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Gender</mat-label>
+            <mat-select formControlName="gender">
+              <mat-option *ngFor="let gender of genders" [value]="gender.value" >
+                {{gender.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          
+        </div>
+ <div >
+ 
+          <mat-form-field class="example-full-width" class="w-full">
+            <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'"  formControlName="password"
+              required>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-form-field> 
+        </div>
+        <mat-checkbox required color="primary" class="m-2" >accept terms of use and privacy policy of the website</mat-checkbox>
+        <mat-card-footer class="flex justify-center "><button (click)="onRegister(); "  class="w-full" mat-raised-button color="primary">Create Account</button></mat-card-footer>
+      </mat-card-content>
+    </mat-tab>
+  </form>
+  </mat-tab-group>
+</div> 
